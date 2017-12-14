@@ -1,8 +1,6 @@
-<ul>
-  <li *ngFor="let product of products">
-    <div>
-      <div>{{product.name}}</div>
-      <div>Price: {{product.price}}</div>
-    </div>
-  </li>
-</ul>
+<div class="products">
+  <div class="product border border-primary rounded" *ngFor="let product of products">
+    <div class="text-primary font-weight-bold">{{product.name}}</div>
+    <div>Price: {{product.price}}</div>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../product';
+import { PRODUCTS } from '../mock-products';
 
 @Component({
   selector: 'app-products',
@@ -7,10 +8,7 @@ import { Product } from '../product';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  product: Product = {
-    name: 'iPhone X',
-    price: '1149'
-  };
+  products = PRODUCTS;
 
   constructor() { }
 

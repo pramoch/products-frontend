@@ -1,4 +1,8 @@
-<div>
-  <div>{{ product.name }}</div>
-  <div>{{ product.price }}</div>
-</div>
+<ul>
+  <li *ngFor="let product of products">
+    <div>
+      <div>{{product.name}}</div>
+      <div>Price: {{product.price}}</div>
+    </div>
+  </li>
+</ul>

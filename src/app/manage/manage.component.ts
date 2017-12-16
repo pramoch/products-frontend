@@ -15,6 +15,9 @@ export class ManageComponent implements OnInit {
   os: string;
   price: string;
 
+  hideSuccessMessage = true;
+  hideWarningMessage = true;
+
   categories = [
     'Mobile Phone'
   ];
@@ -29,13 +32,21 @@ export class ManageComponent implements OnInit {
   ngOnInit() {
     this.category = this.categories[0];
     this.os = this.osOptions[0];
-    this.name = 'iPhone 8';
-    this.brand = 'Apple';
-    this.price = '849';
+    // this.name = 'iPhone 8';
+    // this.brand = 'Apple';
+    // this.price = '849';
+  }
+
+  clear() {
+    this.name = '';
+    this.brand = '';
+    this.price = '';
   }
 
   onButtonClick() {
     if (this.name && this.category && this.brand && this.os && this.price) {
+      this.hideWarningMessage = true;
+
       this.productService.addProduct({
         name: this.name,
         category: this.category,
@@ -44,10 +55,11 @@ export class ManageComponent implements OnInit {
         price: this.price
       })
       .subscribe(product => {
-        console.log(product);
+        this.hideSuccessMessage = false;
+        this.clear();
       });
     } else {
-      console.log('Incomplete value');
+      this.hideWarningMessage = false;
     }
   }
 }

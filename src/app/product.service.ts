@@ -14,14 +14,14 @@ const httpOptions = {
 
 @Injectable()
 export class ProductService {
-  private url = 'http://localhost:3000/';
-  private getUrl = this.url + 'getProducts';
-  private addUrl = this.url + 'addProduct';
+  private host = 'http://localhost:3000/';
+  private getUrl = this.host + 'getProducts';
+  private addUrl = this.host + 'addProduct';
 
   constructor(private http: HttpClient) { }
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.getUrl);
+  getProducts(query?: object): Observable<Product[]> {
+    return this.http.post<Product[]>(this.getUrl, query, httpOptions);
   }
 
   addProduct(product: Product): Observable<Product> {

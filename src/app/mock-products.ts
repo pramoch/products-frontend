@@ -5,21 +5,21 @@ export const PRODUCTS: Product[] = [
     name: 'iPhone X 256 GB',
     category: 'Mobile Phone',
     brand: 'Apple',
-    os: 'iOs',
+    os: 'iOS',
     price: '1149'
   },
   {
     name: 'iPhone 8 256 GB',
     category: 'Mobile Phone',
     brand: 'Apple',
-    os: 'iOs',
+    os: 'iOS',
     price: '849'
   },
   {
     name: 'iPhone 8 Plus 256 GB',
     category: 'Mobile Phone',
     brand: 'Apple',
-    os: 'iOs',
+    os: 'iOS',
     price: '949'
   },
   {

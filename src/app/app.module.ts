@@ -7,16 +7,20 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { ProductsComponent } from './products/products.component';
 
 import { ProductService } from './product.service';
+import { AppRoutingModule } from './/app-routing.module';
+import { ManageComponent } from './manage/manage.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
-    ProductsComponent
+    ProductsComponent,
+    ManageComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [ ProductService ],
   bootstrap: [AppComponent]

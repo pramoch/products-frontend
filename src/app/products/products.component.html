@@ -1,15 +1,26 @@
 <div class="wrapper">
   <div class="column left">
     <div>
+      <h6 class="text-primary">Name</h6>
+      <div class="form-check">
+        <input [(ngModel)]="name" (input)="updateQuery()" type="text" class="form-control">
+      </div>
+    </div>
+    <div>
       <h6 class="text-primary">Brand</h6>
       <div class="form-check">
         <label class="form-check-label">
-          <input [(ngModel)]="isBrandApple" (change)="updateQuery()" class="form-check-input" type="checkbox">Apple
+          <input [(ngModel)]="isApple" (change)="updateQuery()" class="form-check-input" type="checkbox">Apple
         </label>
       </div>
       <div class="form-check">
         <label class="form-check-label">
-          <input [(ngModel)]="isBrandSamsung" (change)="updateQuery()" class="form-check-input" type="checkbox">Samsung
+          <input [(ngModel)]="isSamsung" (change)="updateQuery()" class="form-check-input" type="checkbox">Samsung
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input [(ngModel)]="isOppo" (change)="updateQuery()" class="form-check-input" type="checkbox">OPPO
         </label>
       </div>
     </div>
@@ -17,12 +28,12 @@
       <h6 class="text-primary">OS</h6>
       <div class="form-check">
         <label class="form-check-label">
-          <input class="form-check-input" type="checkbox" value="">iOS
+          <input [(ngModel)]="isiOS" (change)="updateQuery()" class="form-check-input" type="checkbox">iOS
         </label>
       </div>
       <div class="form-check">
         <label class="form-check-label">
-          <input class="form-check-input" type="checkbox" value="">Android
+          <input [(ngModel)]="isAndroid" (change)="updateQuery()" class="form-check-input" type="checkbox">Android
         </label>
       </div>
     </div>
@@ -31,6 +42,8 @@
     <div class="products">
       <div class="product border border-primary rounded" *ngFor="let product of products">
         <div class="text-primary font-weight-bold">{{product.name}}</div>
+        <div>By: {{product.brand}}</div>
+        <div>OS: {{product.os}}</div>
         <div>Price: {{product.price}}</div>
       </div>
     </div>

@@ -15,14 +15,15 @@ const httpOptions = {
 @Injectable()
 export class ProductService {
   private host = 'http://localhost:3000/';
-  private getUrl = this.host + 'getProducts';
+  private getProductsUrl = this.host + 'getProducts';
+  private getProductUrl = this.host + 'getProduct';
   private addUrl = this.host + 'addProduct';
   private products;
 
   constructor(private http: HttpClient) { }
 
   getProducts(query?: object): Observable<Product[]> {
-    return this.http.post<Product[]>(this.getUrl, query, httpOptions)
+    return this.http.post<Product[]>(this.getProductsUrl, query, httpOptions)
       .pipe(
         tap(products => {
           this.products = products;
@@ -34,7 +35,7 @@ export class ProductService {
     if (this.products) {
       return of(this.products.find(product => product._id === id));
     } else {
-      return of(new Product());
+      return this.http.post<Product>(this.getProductUrl, { _id: id }, httpOptions);
     }
   }
 

@@ -1,20 +1,20 @@
 <div class="wrapper">
-  <div class="form-group row">
+  <div class="form-group row" *ngIf="product.name">
     <div class="col-sm-3"></div>
     <div class="col-sm-9">
-        <h4 class="text-primary">Add new product</h4>
+      <img class="mx-auto mb-3 d-block" src="/assets/img/{{product.name}}.jpg">
     </div>
   </div>
   <div class="form-group row">
     <label class="col-sm-3 col-form-label text-right">Name</label>
     <div class="col-sm-9">
-      <input [(ngModel)]="name" type="text" class="form-control" id="name">
+      <input [(ngModel)]="product.name" type="text" class="form-control" id="name">
     </div>
   </div>
   <div class="form-group row">
     <label class="col-sm-3 col-form-label text-right">Category</label>
     <div class="col-sm-9">
-      <select id="category" class="form-control" [(ngModel)]="category">
+      <select id="category" class="form-control" [(ngModel)]="product.category">
         <option *ngFor="let c of categories" [ngValue]="c">{{c}}</option>
       </select>
     </div>
@@ -22,13 +22,13 @@
   <div class="form-group row">
     <label class="col-sm-3 col-form-label text-right">Brand</label>
     <div class="col-sm-9">
-      <input [(ngModel)]="brand" type="text" class="form-control" id="brand">
+      <input [(ngModel)]="product.brand" type="text" class="form-control" id="brand">
     </div>
   </div>
   <div class="form-group row">
     <label class="col-sm-3 col-form-label text-right">OS</label>
     <div class="col-sm-9">
-      <select id="OS" class="form-control" [(ngModel)]="os">
+      <select id="OS" class="form-control" [(ngModel)]="product.os">
         <option *ngFor="let o of osOptions" [ngValue]="o">{{o}}</option>
       </select>
     </div>
@@ -36,24 +36,14 @@
   <div class="form-group row">
     <label class="col-sm-3 col-form-label text-right">Price</label>
     <div class="col-sm-9">
-      <input [(ngModel)]="price" type="text" class="form-control" id="price">
+      <input [(ngModel)]="product.price" type="text" class="form-control" id="price">
     </div>
   </div>
   <div class="form-group row">
     <div class="col-sm-3"></div>
     <div class="col-sm-9">
-      <button (click)="onButtonClick()" class="btn btn-primary">Add</button>
-    </div>
-  </div>
-  <div class="form-group row">
-    <div class="col-sm-3"></div>
-    <div class="col-sm-9">
-      <div class="alert alert-success" role="alert" [ngClass]="{'d-none': hideSuccessMessage}">
-        A product is added successfully
-      </div>
-      <div class="alert alert-danger" role="alert" [ngClass]="{'d-none': hideWarningMessage}">
-        Please specify all values
-      </div>
+      <button (click)="onUpdateClick()" class="btn btn-primary">Update</button>
+      <button (click)="onDeleteClick()" class="btn btn-danger">Delete</button>
     </div>
   </div>
 </div>

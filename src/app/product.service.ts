@@ -30,6 +30,14 @@ export class ProductService {
       );
   }
 
+  getProduct(id: string): Observable<Product> {
+    if (this.products) {
+      return of(this.products.find(product => product._id === id));
+    } else {
+      return of(new Product());
+    }
+  }
+
   addProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(this.addUrl, product, httpOptions)
       .pipe(

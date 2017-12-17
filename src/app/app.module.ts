@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { ProductsComponent } from './products/products.component';
 import { ManageComponent } from './manage/manage.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ManageComponent } from './manage/manage.component';
     AppComponent,
     ToolbarComponent,
     ProductsComponent,
-    ManageComponent
+    ManageComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,

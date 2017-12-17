@@ -17,18 +17,25 @@ export class ProductService {
   private host = 'http://localhost:3000/';
   private getUrl = this.host + 'getProducts';
   private addUrl = this.host + 'addProduct';
+  private products;
 
   constructor(private http: HttpClient) { }
 
   getProducts(query?: object): Observable<Product[]> {
-    return this.http.post<Product[]>(this.getUrl, query, httpOptions);
+    return this.http.post<Product[]>(this.getUrl, query, httpOptions)
+      .pipe(
+        tap(products => {
+          this.products = products;
+        })
+      );
+    ;
   }
 
   addProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(this.addUrl, product, httpOptions)
-    .pipe(
-      catchError(this.handleError<Product>('addProduct'))
-    );
+      .pipe(
+        catchError(this.handleError<Product>('addProduct'))
+      );
   }
 
   private handleError<T> (operation = 'operation', result?: T) {

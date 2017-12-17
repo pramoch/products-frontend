@@ -24,8 +24,11 @@ export class ProductsComponent implements OnInit {
   }
 
   getProducts(query?: object): void {
-    this.productService.getProducts(query)
-        .subscribe(products => this.products = products);
+    this.productService
+        .getProducts(query)
+        .subscribe(products => {
+          this.products = products;
+        });
   }
 
   updateQuery(): void {

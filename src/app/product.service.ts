@@ -28,7 +28,6 @@ export class ProductService {
           this.products = products;
         })
       );
-    ;
   }
 
   addProduct(product: Product): Observable<Product> {

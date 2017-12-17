@@ -40,7 +40,8 @@
   </div>
   <div class="column right">
     <div class="products">
-      <div class="product border border-primary rounded" *ngFor="let product of products">
+      <div class="product border" *ngFor="let product of products">
+        <img class="mx-auto mb-3 d-block" src="/assets/img/{{product.name}}.jpg">
         <div class="text-primary font-weight-bold">{{product.name}}</div>
         <div>By: {{product.brand}}</div>
         <div>OS: {{product.os}}</div>

@@ -18,6 +18,7 @@ export class ProductService {
   private getProductsUrl = this.host + 'getProducts';
   private getProductUrl = this.host + 'getProduct';
   private addUrl = this.host + 'addProduct';
+  private deleteProductUrl = this.host + 'deleteProduct';
   private products;
 
   constructor(private http: HttpClient) { }
@@ -39,11 +40,15 @@ export class ProductService {
     }
   }
 
-  addProduct(product: Product): Observable<Product> {
+  addProduct(product: object): Observable<Product> {
     return this.http.post<Product>(this.addUrl, product, httpOptions)
       .pipe(
         catchError(this.handleError<Product>('addProduct'))
       );
+  }
+
+  deleteProduct(id: string): Observable<string> {
+    return this.http.post<string>(this.deleteProductUrl, { _id: id }, httpOptions);
   }
 
   private handleError<T> (operation = 'operation', result?: T) {

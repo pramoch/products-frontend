@@ -54,7 +54,7 @@ export class ManageComponent implements OnInit {
         os: this.os,
         price: this.price
       })
-      .subscribe(product => {
+      .subscribe(() => {
         this.hideSuccessMessage = false;
         this.clear();
       });

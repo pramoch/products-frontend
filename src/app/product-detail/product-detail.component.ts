@@ -22,6 +22,8 @@ export class ProductDetailComponent implements OnInit {
     'Android'
   ];
 
+  hideDeleteMessage = true;
+
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
@@ -39,5 +41,16 @@ export class ProductDetailComponent implements OnInit {
         .subscribe(product => {
           this.product = product;
         });
+  }
+
+  onDeleteClick() {
+    if (confirm('Are you sure you want to delete "' + this.product.name + '"')) {
+       this.productService
+           .deleteProduct(this.product._id)
+           .subscribe(() => {
+             this.product = null;
+             this.hideDeleteMessage = false;
+           });
+    }
   }
 }

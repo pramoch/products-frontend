@@ -23,6 +23,7 @@ export class ProductDetailComponent implements OnInit {
   ];
 
   hideDeleteMessage = true;
+  hideUpdateMessage = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -51,6 +52,16 @@ export class ProductDetailComponent implements OnInit {
              this.product = null;
              this.hideDeleteMessage = false;
            });
+    }
+  }
+
+  onUpdateClick() {
+    if (confirm('Are you sure you want to update "' + this.product.name + '"')) {
+      this.productService
+          .updateProduct(this.product)
+          .subscribe(() => {
+            this.hideUpdateMessage = false;
+          });
     }
   }
 }

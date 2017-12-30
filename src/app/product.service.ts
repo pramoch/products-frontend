@@ -25,11 +25,11 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getAllProducts(query?: object): Observable<Product[]> {
-    return this.http.get<Product[]>(this.getAllProductsUrl, httpOptions)
+  getAllProducts(): Observable<any> {
+    return this.http.get<any>(this.getAllProductsUrl, httpOptions)
       .pipe(
-        tap(products => {
-          this.products = products;
+        tap(results => {
+          this.products = results.products;
         })
       );
   }

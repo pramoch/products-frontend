@@ -15,6 +15,7 @@ const httpOptions = {
 @Injectable()
 export class ProductService {
   private host = 'http://localhost:3000/';
+  private getAllProductsUrl = this.host + 'getAllProducts';
   private getProductsUrl = this.host + 'getProducts';
   private getProductUrl = this.host + 'getProduct';
   private addProductUrl = this.host + 'addProduct';
@@ -24,13 +25,17 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts(query?: object): Observable<Product[]> {
-    return this.http.post<Product[]>(this.getProductsUrl, query, httpOptions)
+  getAllProducts(query?: object): Observable<Product[]> {
+    return this.http.get<Product[]>(this.getAllProductsUrl, httpOptions)
       .pipe(
         tap(products => {
           this.products = products;
         })
       );
+  }
+
+  getProducts(query?: object): Observable<Product[]> {
+    return this.http.post<Product[]>(this.getProductsUrl, query, httpOptions);
   }
 
   getProduct(id: string): Observable<Product> {
@@ -58,7 +63,6 @@ export class ProductService {
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
 
       // Let the app keep running by returning an empty result.

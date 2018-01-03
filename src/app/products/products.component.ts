@@ -10,9 +10,7 @@ import { ProductService } from '../product.service';
 })
 export class ProductsComponent implements OnInit {
   products: Product[];
-  isSamsung: boolean;
-  isApple: boolean;
-  isOppo: boolean;
+  brands: Array<any>;
   isAndroid: boolean;
   isiOS: boolean;
   name: string;
@@ -28,7 +26,19 @@ export class ProductsComponent implements OnInit {
         .getAllProducts()
         .subscribe(results => {
           this.products = results.products;
+          this.initBrands(results.brands);
         });
+  }
+
+  initBrands(brands): void {
+    this.brands = [];
+
+    brands.forEach(brand => {
+      this.brands.push({
+        name: brand,
+        isChecked: false
+      });
+    });
   }
 
   getProducts(query?: object): void {
@@ -50,15 +60,11 @@ export class ProductsComponent implements OnInit {
     }
 
     // Brand
-    if (this.isApple) {
-      brand.push('Apple');
-    }
-    if (this.isSamsung) {
-      brand.push('Samsung');
-    }
-    if (this.isOppo) {
-      brand.push('OPPO');
-    }
+    this.brands.forEach(item => {
+      if (item.isChecked) {
+        brand.push(item.name);
+      }
+    });
 
     // OS
     if (this.isAndroid) {
@@ -67,7 +73,6 @@ export class ProductsComponent implements OnInit {
     if (this.isiOS) {
       os.push('iOS');
     }
-
 
     if (brand.length > 0) {
       query['brand'] = brand;

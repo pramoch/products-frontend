@@ -16,14 +16,9 @@
     </div>
     <div>
       <h6 class="text-primary">OS</h6>
-      <div class="form-check">
+      <div class="form-check" *ngFor="let os of oss">
         <label class="form-check-label">
-          <input [(ngModel)]="isiOS" (change)="updateQuery()" class="form-check-input" type="checkbox">iOS
-        </label>
-      </div>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input [(ngModel)]="isAndroid" (change)="updateQuery()" class="form-check-input" type="checkbox">Android
+          <input [(ngModel)]="os.isChecked" (change)="updateQuery()" class="form-check-input" type="checkbox">{{os.name}}
         </label>
       </div>
     </div>

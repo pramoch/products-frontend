@@ -11,8 +11,7 @@ import { ProductService } from '../product.service';
 export class ProductsComponent implements OnInit {
   products: Product[];
   brands: Array<any>;
-  isAndroid: boolean;
-  isiOS: boolean;
+  oss: Array<any>;
   name: string;
 
   constructor(private productService: ProductService) { }
@@ -27,6 +26,7 @@ export class ProductsComponent implements OnInit {
         .subscribe(results => {
           this.products = results.products;
           this.initBrands(results.brands);
+          this.initOss(results.oss);
         });
   }
 
@@ -36,6 +36,17 @@ export class ProductsComponent implements OnInit {
     brands.forEach(brand => {
       this.brands.push({
         name: brand,
+        isChecked: false
+      });
+    });
+  }
+
+  initOss(oss): void {
+    this.oss = [];
+
+    oss.forEach(os => {
+      this.oss.push({
+        name: os,
         isChecked: false
       });
     });
@@ -52,7 +63,7 @@ export class ProductsComponent implements OnInit {
   updateQuery(): void {
     const query = {};
     const brand = [];
-    const os = [];
+    const oss = [];
 
     // Name
     if (this.name) {
@@ -67,18 +78,17 @@ export class ProductsComponent implements OnInit {
     });
 
     // OS
-    if (this.isAndroid) {
-      os.push('Android');
-    }
-    if (this.isiOS) {
-      os.push('iOS');
-    }
+    this.oss.forEach(item => {
+      if (item.isChecked) {
+        oss.push(item.name);
+      }
+    });
 
     if (brand.length > 0) {
       query['brand'] = brand;
     }
-    if (os.length > 0) {
-      query['os'] = os;
+    if (oss.length > 0) {
+      query['os'] = oss;
     }
 
     this.getProducts(query);
